@@ -4,19 +4,61 @@ import CharacterLength from "../options/characterLength";
 import CheckBoxes from "../options/checkBoxes";
 import Strength from "../options/strength";
 import Btn from "../button";
+import { useState } from "react";
 
 function Container() {
+  const [value, setValue] = useState<number>(0);
+  const [password, setPassword] = useState("");
+  const [uppercase, setUpperCase] = useState(false);
+  const [lowercase, setLowercase] = useState(true);
+  const [numbers, setNumbers] = useState(false);
+  const [symbols, setSymbols] = useState(false);
+  // console.log(uppercase);
+  const generatePassword = () => {
+    const passLength = password.length;
+    let characters = "";
+
+    const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+    const symbolsChars = "!@#$%^&*-_+=?";
+    const numbersChars = "0123456789";
+
+    if (uppercase === true) {
+      characters += upperChars;
+    }
+    if (lowercase === true) {
+      characters += lowerChars;
+    }
+    if (numbers === true) {
+      characters += numbersChars;
+    }
+    if (symbols === true) {
+      characters += symbolsChars;
+    }
+    let psw = "";
+    for (let i = 0; i < value; i++) {
+      const letter = Math.floor(Math.random() * characters.length);
+      psw += characters.charAt(letter);
+    }
+    console.log(psw);
+  };
   return (
     <Wrapper>
       <InputField />
       <ContainerDiv>
-        <CharacterLength />
-        <CheckBoxes content="Include Uppercase Letters" />
-        <CheckBoxes content="Include Lowercase Letters" />
-        <CheckBoxes content="Include Numbers" />
-        <CheckBoxes content="Include Symbols" />
-        <Strength str={"weak"} />
-        <Btn />
+        <CharacterLength value={value} setValue={setValue} />
+        <CheckBoxes
+          setUpperCase={setUpperCase}
+          setLowercase={setLowercase}
+          setNumbers={setNumbers}
+          setSymbols={setSymbols}
+          uppercase={uppercase}
+          lowercase={lowercase}
+          numbers={numbers}
+          symbols={symbols}
+        />
+        <Strength />
+        <Btn generatePassword={generatePassword} />
       </ContainerDiv>
     </Wrapper>
   );

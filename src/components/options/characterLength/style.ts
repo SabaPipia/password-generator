@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SliderInput = styled.input<{ backgroundPerc?: number }>`
+export const SliderInput = styled.input<{ backgroundperc?: number }>`
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
@@ -10,7 +10,7 @@ export const SliderInput = styled.input<{ backgroundPerc?: number }>`
   height: 8px;
   background-image: linear-gradient(#a4ffaf, #a4ffaf);
   background-size: ${(props) =>
-      props.backgroundPerc ? `${props.backgroundPerc}%` : "0%"}
+      props.backgroundperc ? `${props.backgroundperc}%` : "0%"}
     100%;
   background-repeat: no-repeat;
   &::-webkit-slider-thumb {

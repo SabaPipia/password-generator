@@ -2,8 +2,15 @@ import React, { useState } from "react";
 
 import { SliderInput, SliderHeader, Header, Count } from "./style";
 
-function CharacterLength() {
-  const [value, setValue] = useState<number>(0);
+interface CharacterLengthProps {
+  value: number;
+  setValue: (numb: number) => void;
+}
+
+const CharacterLength: React.FC<CharacterLengthProps> = ({
+  value,
+  setValue,
+}) => {
   const [bgPercentage, setBgPercentage] = useState<number>(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,10 +32,10 @@ function CharacterLength() {
         max={20}
         value={value}
         onChange={handleChange}
-        backgroundPerc={bgPercentage}
+        backgroundperc={bgPercentage}
       />
     </>
   );
-}
+};
 
 export default CharacterLength;
