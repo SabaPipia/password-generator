@@ -2,6 +2,8 @@ import styled from "styled-components";
 import InputField from "../inputField";
 import CharacterLength from "../options/characterLength";
 import CheckBoxes from "../options/checkBoxes";
+import Strength from "../options/strength";
+import Btn from "../button";
 
 function Container() {
   return (
@@ -13,6 +15,8 @@ function Container() {
         <CheckBoxes content="Include Lowercase Letters" />
         <CheckBoxes content="Include Numbers" />
         <CheckBoxes content="Include Symbols" />
+        <Strength str={"weak"} />
+        <Btn />
       </ContainerDiv>
     </Wrapper>
   );
