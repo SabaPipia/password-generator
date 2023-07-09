@@ -1,24 +1,29 @@
 import styled from "styled-components";
 
-export const SliderInput = styled.input`
+export const SliderInput = styled.input<{ backgroundPerc?: number }>`
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
+  background: (#333);
+  accent-color: #fff;
+  cursor: pointer;
   height: 8px;
-  border-radius: 4px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  background-image: linear-gradient(#a4ffaf, #a4ffaf);
+  background-size: ${(props) =>
+      props.backgroundPerc ? `${props.backgroundPerc}%` : "0%"}
+    100%;
+  background-repeat: no-repeat;
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: goldenrod;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    height: 28px;
+    width: 28px;
+    background-color: #fff;
+    border-radius: 14px;
+  }
+  &:hover::-webkit-slider-thumb {
+    background: #222;
+    border: 2px solid #a4ffaf;
+    -webkit-appearance: none;
   }
 `;
 export const SliderHeader = styled.div`
