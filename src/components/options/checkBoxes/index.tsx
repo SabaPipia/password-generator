@@ -1,15 +1,49 @@
 import styled from "styled-components";
-import { CheckBox, Label, Wrapper } from "./style";
+import { CheckBox, Label, Wrapper, SingleWrapper } from "./style";
 
 interface CheckBoxesProps {
-  content: string;
+  setUpperCase: (checked: boolean) => void;
+  setLowercase: (checked: boolean) => void;
+  setNumbers: (checked: boolean) => void;
+  setSymbols: (checked: boolean) => void;
+  uppercase: boolean;
+  lowercase: boolean;
+  numbers: boolean;
+  symbols: boolean;
 }
 
-const CheckBoxes: React.FC<CheckBoxesProps> = ({ content }) => {
+const CheckBoxes: React.FC<CheckBoxesProps> = ({
+  setUpperCase,
+  setLowercase,
+  setNumbers,
+  setSymbols,
+  uppercase,
+  lowercase,
+  numbers,
+  symbols,
+}) => {
   return (
     <Wrapper>
-      <CheckBox type="checkbox" />
-      <Label>{content}</Label>
+      <SingleWrapper>
+        <CheckBox type="checkbox" onClick={() => setUpperCase(!uppercase)} />
+        <Label>Include Uppercase Letters</Label>
+      </SingleWrapper>
+      <SingleWrapper>
+        <CheckBox
+          type="checkbox"
+          onClick={() => setLowercase(!lowercase)}
+          defaultChecked={lowercase}
+        />
+        <Label>Include Lowercase Letters</Label>
+      </SingleWrapper>
+      <SingleWrapper>
+        <CheckBox type="checkbox" onClick={() => setNumbers(!numbers)} />
+        <Label>Include Numbers</Label>
+      </SingleWrapper>
+      <SingleWrapper>
+        <CheckBox type="checkbox" onClick={() => setSymbols(!symbols)} />
+        <Label>Include Symbols</Label>
+      </SingleWrapper>
     </Wrapper>
   );
 };

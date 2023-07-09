@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import IconArrowRight from "../../assets/icon-arrow-right";
 
-function Button() {
+interface ButtonProps {
+  generatePassword: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ generatePassword }) => {
   const [iconColor, setIconColor] = useState("#24232C");
   const handleHover = () => {
     setIconColor("#a4ffaf");
@@ -12,12 +16,16 @@ function Button() {
   };
   return (
     <div>
-      <Btn onMouseOver={handleHover} onMouseLeave={handleMouseOut}>
+      <Btn
+        onClick={() => generatePassword()}
+        onMouseOver={handleHover}
+        onMouseLeave={handleMouseOut}
+      >
         GENERATE <IconArrowRight iconColor={iconColor} />
       </Btn>
     </div>
   );
-}
+};
 const Btn = styled.div`
   cursor: pointer;
   width: 100%;
