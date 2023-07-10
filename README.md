@@ -4,8 +4,8 @@
 A simple password generator web application React. This app allows users to generate strong and secure passwords based on their preferences.
 
 ## Technologies used
-1.React + Vite + TypeScript <br/>
-2.StyledComponents
+1. React + Vite + TypeScript <br/>
+2. StyledComponents
 
 ## Installation and Setup
 
