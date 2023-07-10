@@ -45,6 +45,7 @@ function Container() {
   };
   return (
     <Wrapper>
+      <Header>Password Generator</Header>
       <InputField
         password={password}
         isCopied={isCopied}
@@ -79,6 +80,14 @@ const ContainerDiv = styled.div`
   padding: 30px;
   background-color: #23232c;
   margin-top: 40px;
+`;
+const Header = styled.h2`
+  color: #92929bac;
+  font-size: 17px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
 `;
 
 const Wrapper = styled.div`
