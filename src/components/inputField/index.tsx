@@ -13,38 +13,62 @@ const InputField: React.FC<InputProps> = ({
   setIsCopied,
 }) => {
   const copyValue = () => {
-    try {
-      if (password) {
-        void navigator.clipboard.writeText(password);
-        console.log("Password copied to clipboard");
-      }
-    } catch (error) {
-      console.error("Failed to copy password to clipboard:", error);
+    if (password && password.length != 0) {
+      void navigator.clipboard.writeText(password);
+      setIsCopied(true);
+    } else {
+      console.error("Failed to copy password to clipboard:");
     }
   };
   return (
     <>
       <Wrapper>
-        <Input placeholder="P4$5W0rD!" value={password} />
+        <Input
+          placeholder="P4$5W0rD!"
+          value={password}
+          pswLeng={password.length}
+          readOnly
+        />
         {isCopied ? <CopyText>Copied!</CopyText> : null}
-        <Copy copyValue={copyValue} setIsCopied={setIsCopied} />
+        <Copy copyValue={copyValue} />
       </Wrapper>
     </>
   );
 };
-const Input = styled.input`
+
+const Input = styled.input<{ pswLeng: number }>`
   width: 340px;
   background-color: #23232c;
-  font-size: 24px;
-  padding: 20px 50px 20px 30px;
+  ${(props) => {
+    if (props.pswLeng > 18) {
+      return {
+        fontSize: "20px",
+        padding: "24px 50px 24px 30px",
+      };
+    } else {
+      return {
+        fontSize: "24px",
+        padding: "22px 50px 22px 30px",
+      };
+    }
+  }};
   border: none;
   color: #fff;
   position: relative;
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+  @media (max-width: 320px) {
+    width: 100%;
+  }
 `;
 const CopyText = styled.p`
   position: absolute;
   color: #a4ffaf;
-  transform: translate(470%, 120%);
+  transform: translate(470%, 127%);
+  @media (max-width: 430px) {
+    transform: translate(350%, 400%);
+  }
 `;
 const Wrapper = styled.div`
   display: flex;

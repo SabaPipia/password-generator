@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { CheckBox, Label, Wrapper, SingleWrapper } from "./style";
 
 interface CheckBoxesProps {
