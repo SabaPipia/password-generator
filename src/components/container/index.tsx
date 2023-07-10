@@ -62,7 +62,13 @@ function Container() {
           numbers={numbers}
           symbols={symbols}
         />
-        <Strength />
+        <Strength
+          uppercase={uppercase}
+          lowercase={lowercase}
+          numbers={numbers}
+          symbols={symbols}
+          password={password}
+        />
         <Btn generatePassword={generatePassword} setIsCopied={setIsCopied} />
       </ContainerDiv>
     </Wrapper>
@@ -77,6 +83,13 @@ const ContainerDiv = styled.div`
 
 const Wrapper = styled.div`
   width: 400px;
+  @media (max-width: 430px) {
+    width: 350px;
+  }
+  @media (max-width: 320px) {
+    width: 280px;
+    height: 80%;
+  }
 `;
 
 export default Container;

@@ -1,52 +1,65 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 
-const Strength = () => {
+import {
+  Header,
+  RightPart,
+  StrengthIndicator,
+  StrengthMessage,
+  Wrap,
+  Wrapper,
+} from "./style";
+
+interface StrengthProps {
+  uppercase: boolean;
+  lowercase: boolean;
+  numbers: boolean;
+  symbols: boolean;
+  password: string;
+}
+
+const Strength: React.FC<StrengthProps> = ({
+  uppercase,
+  lowercase,
+  numbers,
+  symbols,
+  password,
+}) => {
+  const [strength, setStrength] = useState("");
+
+  useEffect(() => {
+    const calculateStrength = () => {
+      if (
+        // prettier-ignore
+        password.length >= 10 && uppercase && lowercase && numbers ||
+        password.length >= 10 && uppercase && lowercase  && symbols
+      ) {
+        setStrength("STRONG");
+      } else if (password.length >= 8) {
+        setStrength("MEDIUM");
+      } else if (password.length >= 5) {
+        setStrength("WEAK");
+      } else if (password.length < 5 && password.length > 0) {
+        setStrength("TOO WEAK!");
+      } else {
+        setStrength("");
+      }
+    };
+    calculateStrength();
+  }, [password, lowercase, uppercase, numbers, symbols]);
   return (
     <Wrapper>
       <Header>Strength</Header>
       <RightPart>
-        <StrengthMessage>Too Strong</StrengthMessage>
-        <Wrap />
-        <StrengthIndicator />
-        <StrengthIndicator />
-        <StrengthIndicator />
-        <StrengthIndicator />
-        <Wrap />
+        <StrengthMessage>{password ? strength : null}</StrengthMessage>
+        <Wrap>
+          <StrengthIndicator strength={strength} />
+          <StrengthIndicator strength={strength} />
+          <StrengthIndicator strength={strength} />
+          <StrengthIndicator strength={strength} />
+        </Wrap>
       </RightPart>
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  background-color: #18171f;
-  padding: 20px 15px;
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-const Header = styled.h3`
-  color: #817d92;
-  font-size: 16px;
-  width: 70%;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-`;
-const RightPart = styled.div`
-  display: flex;
-  justify-content: end;
-  width: 100%;
-`;
-const StrengthMessage = styled.h2`
-  font-size: 15px;
-  color: #fff;
-`;
-const StrengthIndicator = styled.div`
-  border: 1px solid #fff;
-  width: 7px;
-  margin-left: 3px;
-  display: flex;
-`;
-const Wrap = styled.div``;
 
 export default Strength;

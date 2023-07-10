@@ -3,15 +3,13 @@ import styled from "styled-components";
 
 interface CopyProps {
   copyValue: () => void;
-  setIsCopied: (copy: boolean) => void;
 }
 
-const IconCopy: React.FC<CopyProps> = ({ copyValue, setIsCopied }) => {
+const IconCopy: React.FC<CopyProps> = ({ copyValue }) => {
   return (
     <WrapperDiv
       onClick={() => {
         copyValue();
-        setIsCopied(true);
       }}
     >
       <svg width="21" height="24" xmlns="http://www.w3.org/2000/svg">
