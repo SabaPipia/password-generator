@@ -4,9 +4,10 @@ import IconArrowRight from "../../assets/icon-arrow-right";
 
 interface ButtonProps {
   generatePassword: () => void;
+  setIsCopied: (copy: boolean) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ generatePassword }) => {
+const Button: React.FC<ButtonProps> = ({ generatePassword, setIsCopied }) => {
   const [iconColor, setIconColor] = useState("#24232C");
   const handleHover = () => {
     setIconColor("#a4ffaf");
@@ -17,7 +18,10 @@ const Button: React.FC<ButtonProps> = ({ generatePassword }) => {
   return (
     <div>
       <Btn
-        onClick={() => generatePassword()}
+        onClick={() => {
+          generatePassword();
+          setIsCopied(false);
+        }}
         onMouseOver={handleHover}
         onMouseLeave={handleMouseOut}
       >
