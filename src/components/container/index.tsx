@@ -13,9 +13,10 @@ function Container() {
   const [lowercase, setLowercase] = useState(true);
   const [numbers, setNumbers] = useState(false);
   const [symbols, setSymbols] = useState(false);
-  // console.log(uppercase);
+
+  const [isCopied, setIsCopied] = useState(false);
+
   const generatePassword = () => {
-    const passLength = password.length;
     let characters = "";
 
     const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -40,11 +41,15 @@ function Container() {
       const letter = Math.floor(Math.random() * characters.length);
       psw += characters.charAt(letter);
     }
-    console.log(psw);
+    setPassword(psw);
   };
   return (
     <Wrapper>
-      <InputField />
+      <InputField
+        password={password}
+        isCopied={isCopied}
+        setIsCopied={setIsCopied}
+      />
       <ContainerDiv>
         <CharacterLength value={value} setValue={setValue} />
         <CheckBoxes
@@ -58,11 +63,12 @@ function Container() {
           symbols={symbols}
         />
         <Strength />
-        <Btn generatePassword={generatePassword} />
+        <Btn generatePassword={generatePassword} setIsCopied={setIsCopied} />
       </ContainerDiv>
     </Wrapper>
   );
 }
+
 const ContainerDiv = styled.div`
   padding: 30px;
   background-color: #23232c;
