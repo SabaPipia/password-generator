@@ -4,27 +4,22 @@
 A simple password generator web application React. This app allows users to generate strong and secure passwords based on their preferences.
 
 ## Technologies used
-1.React + Vite + TypeScript
+1.React + Vite + TypeScript <br/>
 2.StyledComponents
 
 ## Installation and Setup
 
-1. Navigate to the project directory:
-   ```
-   cd password-generator
-   ```
-
-2. Install the dependencies:
+1. Install the dependencies:
    ```
    npm install
    ```
 
-3. Run the app:
+2. Run the app:
    ```
    npm run dev
    ```
 
-4. Open your browser and visit `http://localhost:5173/` to view the app.
+3. Open your browser and visit `http://localhost:5173/` to view the app.
 
 ## About the App
 
